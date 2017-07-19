@@ -1,53 +1,52 @@
-import java.io.*;  
+import java.io.*;
 class Edge
 {
-int v1,v2,wt;  
-public static void main(String args[])throws IOException 
-{ 
-
-int i,j,mincost=0;
+int v1,v2,wt;
+}
+class kruskalsalgo
+{
+public static void main(String args[])throws IOException
+{
+int ik,j,mincost=0;
 BufferedReader br=new BufferedReader( new InputStreamReader(System.in));
 System.out.println(" Enter no.of vertices:");
 int v=Integer.parseInt(br.readLine());
 System.out.println(" Enter no.of edges:");
 int e=Integer.parseInt(br.readLine());
- Edge ed[]=new Edge[e+1];
-for(i=1;i<=e;i++)
+Edge ed[]=new Edge[e+1];
+for(ik=1;ik<=e;ik++)
 {
- ed[i]=new Edge();
- System.out.println(" Enter the vertices and the weight of edge "+(i)+ ":"); 
- ed[i].v1=Integer.parseInt(br.readLine());
- ed[i].v2=Integer.parseInt(br.readLine());
- ed[i].wt=Integer.parseInt(br.readLine());
+ed[ik]=new Edge();
+System.out.println(" Enter the vertices and the weight of edge "+(ik)+ ":");
+ed[ik].v1=Integer.parseInt(br.readLine());
+ed[ik].v2=Integer.parseInt(br.readLine());
+ed[ik].wt=Integer.parseInt(br.readLine());
 }
-for(i=1;i<=e;i++)      
- for(j=1;j<=e-1;j++)
+for(ik=1;ik<=e;ik++)
+for(j=1;j<=e-1;j++)
 {
- if(ed[j].wt>ed[j+1].wt)
- {
-   Edge t=new Edge();
-    t=ed[j];
-    ed[j]=ed[j+1];
-    ed[j+1]=t;
+if(ed[j].wt>ed[j+1].wt)
+{
+Edge t=new Edge();
+t=ed[j];
+ed[j]=ed[j+1];
+ed[j+1]=t;
 }
 }
-
-int visited[]=new int[v+1];       // array to check whether the vertex is visited or not
-for(i=1;i<=v;i++)
- visited[i]=0;
+int visited[]=new int[v+1];
+for(ik=1;ik<=v;ik++)
+visited[ik]=0;
 System.out.println("MINIMUM SPANNING TREE :");
-
-
-for(i=1;i<=e;i++)
-{ 
- if(i>v)
-  break;
-else if( visited[ed[i].v1]==0 || visited[ed[i].v2]==0)
- {
-    System.out.println(ed[i].v1+ "-"+ ed[i].v2);
-    visited[ed[i].v1]=visited[ed[i].v2]=1;
-    mincost+=ed[i].wt;
- }
+for(ik=1;ik<=e;ik++)
+{
+if(ik>v)
+break;
+else if( visited[ed[ik].v1]==0 || visited[ed[ik].v2]==0)
+{
+System.out.println(ed[ik].v1+ "-"+ ed[ik].v2);
+visited[ed[ik].v1]=visited[ed[ik].v2]=1;
+mincost+=ed[ik].wt;
+}
 }
 System.out.println("MINIMUM COST = " +mincost);
 }
