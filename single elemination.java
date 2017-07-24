@@ -1,45 +1,31 @@
-package list;
+package com.java2novice.algos;
 
-import java.util.Scanner;
+public class MyBinarySearch {
 
-public class G1 {
-	public static final int alp = 26;
-	private static Scanner s;
-
-	public int panChe(String str) {
-		if (str.length() < alp) {
-			return -1;
-		}
-		for (char c = 'A'; c <= 'Z'; c++) {
-			if ((str.indexOf(c) < 0) && (str.indexOf((char) (c + 32)) < 0)) {
-				return -1;
-			}
-		}
-		return 1;
-	}
-
-	public static void main(String[] args) {
-		s = new Scanner(System.in);
-		System.out.println("\"Pangram Check\" "+ "\nEnter the String");
-		String s1 = s.nextLine();
-		PanCheck obj = new PanCheck();
-		int rs; 
-		rs= obj.panChe(s1);
-		if (rs == -1)
-			System.out.print("Given String : "+ "\"Not a Pangram\"");
-		else
-			System.out.print("Given String : " +"\"Pangram\"");
-	}
-
-    private static class PanCheck {
-
-        public PanCheck() {
+	public int binarySearch(int[] inputArr, int key) {
+		
+        int start = 0;
+        int end = inputArr.length - 1;
+        while (start <= end) {
+            int mid = (start + end) / 2;
+            if (key == inputArr[mid]) {
+                return mid;
+            }
+            if (key < inputArr[mid]) {
+            	end = mid - 1;
+            } else {
+            	start = mid + 1;
+            }
         }
-
-        private int panChe(String s1) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
+        return -1;
+    }
+ 
+    public static void main(String[] args) {
+        
+    	MyBinarySearch mbs = new MyBinarySearch();
+    	int[] arr = {2, 4, 6, 8, 10, 12, 14, 16};
+    	System.out.println("Key 14's position: "+mbs.binarySearch(arr, 14));
+    	int[] arr1 = {6,34,78,123,432,900};
+    	System.out.println("Key 432's position: "+mbs.binarySearch(arr1, 432));
     }
 }
-
-
